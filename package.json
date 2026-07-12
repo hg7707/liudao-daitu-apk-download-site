@@ -1,0 +1,22 @@
+{
+  "name": "android-apk-download-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "一个可部署到 Render 的 Android APK 官方下载网站",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test test/server.test.js",
+    "lint": "node --check server.js && node --check lib/config.js && node --check lib/stats-store.js && node --check public/js/main.js && node --check public/js/admin.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0"
+  }
+}

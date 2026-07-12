@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="安全下载 Android APP 最新 APK，查看版本信息和更新日志。">
+  <meta name="keywords" content="Android,APK,APP下载,官方下载,应用更新">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="APP 官方下载">
+  <meta property="og:description" content="安全下载最新 Android APP 安装包。">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>APP 官方下载</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="主导航">
+      <a class="brand" href="#top" aria-label="返回首页"><span class="brand-mark">A</span><span data-app-name>示例工具 APP</span></a>
+      <button class="menu-button" aria-label="打开导航" aria-expanded="false">☰</button>
+      <div class="nav-links"><a href="#features">功能</a><a href="#updates">更新日志</a><a href="#faq">常见问题</a><a class="nav-download" href="/download">下载 APK</a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">官方正版 · 安全下载</div>
+          <div class="app-logo" aria-hidden="true"><span>A</span></div>
+          <h1 data-app-name>示例工具 APP</h1>
+          <p class="slogan" data-slogan>让每一次使用，都更轻松高效</p>
+          <p class="description" data-description>请替换为您的 APP 介绍。</p>
+          <div class="version-row" aria-label="最新版本信息"><span>最新版 <strong data-version>1.0.0</strong></span><i></i><span data-apk-size>待上传 APK 后填写</span><i></i><span data-release-date>2026-07-12</span></div>
+          <a class="download-button" id="downloadButton" href="/download"><span aria-hidden="true">↓</span> 立即下载 APK <small>Android</small></a>
+          <p class="download-hint" id="deviceHint">点击后将开始下载官方 APK 安装包</p>
+        </div>
+        <div class="hero-visual reveal" aria-label="APP 界面预览">
+          <div class="phone-frame"><div class="phone-speaker"></div><div class="phone-screen"><div class="mock-head"><b>早上好</b><span>•••</span></div><div class="mock-card primary"><span>今日效率</span><strong>92<small>%</small></strong><em>状态良好</em></div><div class="mock-label">快捷功能</div><div class="mock-grid"><span>⚡<small>效率</small></span><span>✓<small>任务</small></span><span>◌<small>记录</small></span><span>☷<small>更多</small></span></div><div class="mock-card list"><b>保持专注，完成今天的目标</b><span>刚刚更新</span></div></div></div>
+          <div class="float-badge badge-top">✓ 已安全校验</div><div class="float-badge badge-bottom">最新 v<span data-version>1.0.0</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="trust-strip"><div class="container"><span>✓ 官方安装包</span><span>✓ 无需注册</span><span>✓ 持续更新</span><span>✓ 免费下载</span></div></section>
+    <section class="section container" id="features"><div class="section-heading reveal"><p class="eyebrow">核心功能</p><h2>专注解决真实问题</h2><p>轻量、清晰、顺手。这里的内容可在配置文件中快速替换。</p></div><div class="feature-grid" id="featureGrid"></div></section>
+    <section class="section soft-section"><div class="container"><div class="section-heading reveal"><p class="eyebrow">界面预览</p><h2>一眼看懂，轻松上手</h2><p>请将这些 CSS 占位预览替换成您的真实 APP 截图。</p></div><div class="screenshot-grid" id="screenshotGrid"></div></div></section>
+    <section class="section container"><div class="steps-card reveal"><div><p class="eyebrow">安装步骤</p><h2>三步开始使用</h2><p>下载完成后，按以下提示安装即可。</p></div><ol><li><b>1</b><span><strong>下载 APK</strong><small>点击页面上的“立即下载 APK”按钮。</small></span></li><li><b>2</b><span><strong>允许安装</strong><small>按 Android 系统提示，允许浏览器安装应用。</small></span></li><li><b>3</b><span><strong>打开 APP</strong><small>安装完成后，在手机桌面打开即可使用。</small></span></li></ol></div></section>
+    <section class="section soft-section" id="updates"><div class="container update-layout"><div class="section-heading reveal"><p class="eyebrow">更新日志</p><h2>持续变得更好</h2><p>当前安装包和历史版本的更新记录都在这里。</p></div><div class="update-panel reveal"><div class="current-version"><div><span>当前版本</span><h3>v<span data-version>1.0.0</span></h3></div><div><span>发布日期</span><b data-release-date>2026-07-12</b></div><div><span>安装包大小</span><b data-apk-size>待上传 APK 后填写</b></div></div><ul id="updateLog"></ul><details><summary>查看历史版本</summary><div id="historyList"></div></details></div></div></section>
+    <section class="section container" id="faq"><div class="section-heading reveal"><p class="eyebrow">常见问题</p><h2>下载前你可能想了解</h2></div><div class="faq-list reveal"><details open><summary>下载的 APK 安全吗？</summary><p>请仅通过本官方网站下载。发布前建议对 APK 完成签名并保管好签名证书。</p></details><details><summary>为什么 Android 提示“未知来源”？</summary><p>这是 Android 对浏览器下载应用的常规保护提示。请确认来源为本站后，在系统设置中允许当前浏览器安装应用。</p></details><details><summary>iPhone 可以安装 APK 吗？</summary><p>不可以。APK 是 Android 应用安装包，iPhone/iPad 无法安装。</p></details><details><summary>电脑下载后怎么安装？</summary><p>可将 APK 传输到 Android 手机，再在手机中打开文件安装。</p></details></div></section>
+    <section class="section container"><div class="contact-card reveal"><div><p class="eyebrow">需要帮助？</p><h2>欢迎联系我们</h2><p>反馈问题、提出建议，或加入用户交流群。</p></div><div class="contact-actions"><a id="contactLink" href="mailto:contact@example.com">联系邮箱</a><span id="qqGroup">QQ群：123456789（请替换）</span></div></div></section>
+  </main>
+  <footer><div class="container"><span data-copyright>© 2026 示例工具 APP。保留所有权利。</span><a href="/admin">管理员</a></div></footer>
+  <div class="download-notice" id="downloadNotice" role="status" aria-live="polite"></div>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

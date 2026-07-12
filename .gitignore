@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+data/download-stats.json.tmp
+public/apk/*.apk
+!public/apk/README.md
+.DS_Store

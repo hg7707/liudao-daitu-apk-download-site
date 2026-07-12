@@ -1,0 +1,41 @@
+{
+  "appName": "六道带土",
+  "slogan": "更清晰地掌握你的游戏节奏",
+  "description": "六道带土是一款面向 Android 用户的实用工具应用，帮助你更便捷地进行计时、配置与辅助操作。",
+  "latestVersion": "2.0",
+  "versionCode": 2,
+  "apkFileName": "liudao-daitu-v2.0.apk",
+  "downloadFileName": "六道带土-v2.0.apk",
+  "apkSize": "241.4 MB",
+  "releaseDate": "2026-07-10",
+  "remoteApkUrl": "",
+  "forceUpdate": false,
+  "minSupportedVersion": "1.0.0",
+  "updateLog": [
+    "提供计时、配置与悬浮窗辅助能力",
+    "优化应用启动和基础操作体验",
+    "修复已知问题并提升稳定性"
+  ],
+  "historicalVersions": [
+    {
+      "version": "2.0",
+      "releaseDate": "2026-07-10",
+      "apkSize": "241.4 MB",
+      "updateLog": ["提供计时与配置能力", "优化基础使用体验"]
+    }
+  ],
+  "features": [
+    { "title": "便捷计时", "description": "快速建立并查看计时信息，减少重复操作。", "icon": "⚡" },
+    { "title": "灵活配置", "description": "根据自己的使用场景完成需要的设置。", "icon": "⚙️" },
+    { "title": "稳定辅助", "description": "专注核心体验，持续优化稳定性和易用性。", "icon": "🛡️" }
+  ],
+  "screenshots": [
+    { "title": "首页概览", "description": "在这里展示 APP 的主界面截图。", "className": "screen-one" },
+    { "title": "核心功能", "description": "在这里展示最重要的功能页面。", "className": "screen-two" },
+    { "title": "个性设置", "description": "在这里展示设置或辅助功能页面。", "className": "screen-three" }
+  ],
+  "contact": "contact@example.com",
+  "qqGroup": "QQ群：123456789（请替换）",
+  "websiteTitle": "六道带土 - 官方下载",
+  "copyright": "© 2026 六道带土。保留所有权利。"
+}
