@@ -18,7 +18,6 @@
     $('#featureGrid').innerHTML = (config.features || []).map((item) => `<article class="feature-card reveal"><div class="feature-icon">${escapeHtml(item.icon || '✓')}</div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></article>`).join('');
     const screenshotGrid = $('#screenshotGrid'); if (screenshotGrid) screenshotGrid.innerHTML = (config.screenshots || []).map((item) => `<article class="screenshot-card reveal"><div class="screenshot-placeholder ${escapeHtml(item.className || '')}"></div><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div></article>`).join('');
     $('#updateLog').innerHTML = (config.updateLog || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('');
-    $('#historyList').innerHTML = (config.historicalVersions || []).map((item) => `<article class="history-entry"><b>v${escapeHtml(item.version)}</b><span>${escapeHtml(item.releaseDate)} · ${escapeHtml(item.apkSize)}</span><ul>${(item.updateLog || []).map((log) => `<li>${escapeHtml(log)}</li>`).join('')}</ul></article>`).join('') || '<p>暂无历史版本记录。</p>';
   }
   async function load() { try { const response = await fetch('/api/app-info'); const data = await response.json(); if (!response.ok || !data.success) throw new Error(); render(data); } catch { showNotice('版本信息暂时无法加载，请稍后刷新页面。'); } }
   $('.menu-button').addEventListener('click', (event) => { const links = $('.nav-links'); const open = links.classList.toggle('open'); event.currentTarget.setAttribute('aria-expanded', String(open)); });
