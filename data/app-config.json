@@ -9,7 +9,7 @@
   "apkSize": "241.4 MB",
   "apkSha256": "7ed4f5db87c0ce8a67755cbb83bba57112768f2153623cb61ad1dd07dd85a80d",
   "releaseDate": "2026-07-10",
-  "remoteApkUrl": "",
+  "remoteApkUrl": "https://github.com/hg7707/liudao-daitu-apk-download-site/releases/download/v2.0/liudao-daitu-v2.0.apk",
   "forceUpdate": false,
   "minSupportedVersion": "1.0.0",
   "updateLog": [

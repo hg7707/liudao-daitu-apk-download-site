@@ -12,11 +12,15 @@ test('首页可访问', async () => { const response = await fetch(`${baseUrl}/`
 test('版本接口返回动态下载地址和标准字段', async () => { const response = await fetch(`${baseUrl}/api/version`); const data = await response.json(); assert.equal(response.status, 200); assert.equal(data.success, true); assert.equal(data.downloadUrl, `${baseUrl}/download`); assert.equal(typeof data.versionCode, 'number'); });
 test('公开应用信息不泄露服务器 APK 路径配置', async () => { const response = await fetch(`${baseUrl}/api/app-info`); const data = await response.json(); assert.equal(response.status, 200); assert.equal(data.apkFileName, undefined); assert.equal(data.success, true); });
 test('正式 APK 下载接口返回安全的附件响应', async () => {
-  const response = await fetch(`${baseUrl}/download`);
-  assert.equal(response.status, 200);
-  assert.equal(response.headers.get('content-type'), 'application/vnd.android.package-archive');
-  assert.match(response.headers.get('content-disposition'), /attachment/);
-  await response.body.cancel();
+  const response = await fetch(`${baseUrl}/download`, { redirect: 'manual' });
+  if (response.status === 302) {
+    assert.match(response.headers.get('location'), /^https:\/\//);
+  } else {
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('content-type'), 'application/vnd.android.package-archive');
+    assert.match(response.headers.get('content-disposition'), /attachment/);
+    await response.body.cancel();
+  }
 });
 test('APK 目录不可直接访问', async () => { const response = await fetch(`${baseUrl}/apk/app-latest.apk`); assert.equal(response.status, 404); });
 test('未登录不能读取后台统计', async () => { const response = await fetch(`${baseUrl}/api/admin/stats`); assert.equal(response.status, 401); });
