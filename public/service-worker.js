@@ -1,5 +1,5 @@
-const CACHE = 'apk-site-shell-v1';
-const ASSETS = ['/', '/css/style.css', '/js/main.js', '/images/favicon.svg', '/manifest.json'];
+const CACHE = 'apk-site-shell-v2';
+const ASSETS = ['/', '/css/style.css', '/js/main.js', '/images/favicon.svg', '/images/app-icon.jpg', '/manifest.json'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', event => {
