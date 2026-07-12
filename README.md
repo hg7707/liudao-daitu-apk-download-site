@@ -74,7 +74,7 @@ npm test
 
 1. 将已签名的正式 APK 放进 `public/apk/`。
 2. 修改 `data/app-config.json` 的 `apkFileName`，与实际文件名完全一致。例如：`app-latest.apk`。
-3. 同时更新同一文件中的 `downloadFileName`、`latestVersion`、`versionCode`、`apkSize`、`releaseDate`、`updateLog` 和 `historicalVersions`。
+3. 同时更新同一文件中的 `downloadFileName`、`latestVersion`、`versionCode`、`apkSize`、`apkSha256`、`releaseDate`、`updateLog` 和 `historicalVersions`。可用 PowerShell 生成校验值：`Get-FileHash public/apk/你的文件.apk -Algorithm SHA256`。
 4. 本地执行 `npm start` 后访问 `/download` 验证浏览器下载。
 5. 提交配置和代码到 GitHub（APK 默认被 `.gitignore` 忽略）。
 
@@ -102,6 +102,7 @@ npm test
   "minSupportedVersion": "1.0.0",
   "downloadUrl": "https://你的域名/download",
   "apkSize": "25.6 MB",
+  "apkSha256": "APK 的 SHA-256 校验值",
   "releaseDate": "2026-07-12",
   "updateLog": ["优化运行稳定性"]
 }

@@ -100,7 +100,7 @@ app.get('/api/version', apiLimiter, publicCors, async (req, res, next) => {
   try {
     const c = await getConfig();
     res.set('Cache-Control', 'public, max-age=300');
-    res.json({ success: true, appName: c.appName, latestVersion: c.latestVersion, versionCode: c.versionCode, forceUpdate: c.forceUpdate, minSupportedVersion: c.minSupportedVersion, downloadUrl: `${getBaseUrl(req)}/download`, apkSize: c.apkSize, releaseDate: c.releaseDate, updateLog: c.updateLog });
+    res.json({ success: true, appName: c.appName, latestVersion: c.latestVersion, versionCode: c.versionCode, forceUpdate: c.forceUpdate, minSupportedVersion: c.minSupportedVersion, downloadUrl: `${getBaseUrl(req)}/download`, apkSize: c.apkSize, apkSha256: c.apkSha256 || null, releaseDate: c.releaseDate, updateLog: c.updateLog });
   } catch (error) { next(error); }
 });
 
