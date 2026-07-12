@@ -14,9 +14,9 @@
     document.title = config.websiteTitle || `${config.appName} - 官方下载`;
     text('[data-app-name]', config.appName); text('[data-slogan]', config.slogan); text('[data-description]', config.description); text('[data-version]', config.latestVersion); text('[data-apk-size]', config.apkSize); text('[data-release-date]', config.releaseDate); text('[data-copyright]', config.copyright);
     $('meta[name="description"]').content = config.description; $('meta[property="og:title"]').content = config.websiteTitle; $('meta[property="og:description"]').content = config.description;
-    const contact = $('#contactLink'); contact.href = `mailto:${config.contact}`; contact.textContent = config.contact; $('#qqGroup').textContent = config.qqGroup;
+    const contact = $('#contactLink'); if (contact) { contact.href = `mailto:${config.contact}`; contact.textContent = config.contact; } const qqGroup = $('#qqGroup'); if (qqGroup) qqGroup.textContent = config.qqGroup;
     $('#featureGrid').innerHTML = (config.features || []).map((item) => `<article class="feature-card reveal"><div class="feature-icon">${escapeHtml(item.icon || '✓')}</div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></article>`).join('');
-    $('#screenshotGrid').innerHTML = (config.screenshots || []).map((item) => `<article class="screenshot-card reveal"><div class="screenshot-placeholder ${escapeHtml(item.className || '')}"></div><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div></article>`).join('');
+    const screenshotGrid = $('#screenshotGrid'); if (screenshotGrid) screenshotGrid.innerHTML = (config.screenshots || []).map((item) => `<article class="screenshot-card reveal"><div class="screenshot-placeholder ${escapeHtml(item.className || '')}"></div><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div></article>`).join('');
     $('#updateLog').innerHTML = (config.updateLog || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('');
     $('#historyList').innerHTML = (config.historicalVersions || []).map((item) => `<article class="history-entry"><b>v${escapeHtml(item.version)}</b><span>${escapeHtml(item.releaseDate)} · ${escapeHtml(item.apkSize)}</span><ul>${(item.updateLog || []).map((log) => `<li>${escapeHtml(log)}</li>`).join('')}</ul></article>`).join('') || '<p>暂无历史版本记录。</p>';
   }
