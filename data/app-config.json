@@ -2,20 +2,20 @@
   "appName": "蛇叔的计时器",
   "slogan": "更清晰地掌握你的游戏节奏",
   "description": "蛇叔的计时器是一款面向 Android 用户的实用工具应用，帮助你更便捷地进行计时、配置与辅助操作。",
-  "latestVersion": "2.4.3-beta",
-  "versionCode": 10,
-  "apkFileName": "sheshu-timer-v2.4.3-beta.apk",
-  "downloadFileName": "蛇叔的计时器-v2.4.3-beta.apk",
+  "latestVersion": "2.4.4-beta",
+  "versionCode": 11,
+  "apkFileName": "sheshu-timer-v2.4.4-beta.apk",
+  "downloadFileName": "蛇叔的计时器-v2.4.4-beta.apk",
   "apkSize": "51.1 MB",
-  "apkSha256": "688f47200b343218fc3804369a65ec6518f1e55ff26f51fddd5931dd82a2b4d0",
+  "apkSha256": "b255019a75772f79a86fd1a5709c18fa65ebfcf330789e37c9b7bc40c05373df",
   "releaseDate": "2026-07-18",
   "remoteApkUrl": "",
   "forceUpdate": false,
   "minSupportedVersion": "1.0.0",
   "updateLog": [
-    "重做横屏主界面，六个主要功能改为全宽双列布局",
-    "隐藏顶部状态栏和底部导航栏，避免灰色系统栏遮挡内容",
-    "将作者信息移出按钮区域，优化横屏安全边距与视觉层级"
+    "底部署名更新为快手/抖音/视频号————科学家蛇叔",
+    "使用红色小字展示，避免遮挡主要操作区域",
+    "优化横屏主界面视觉层级"
   ],
   "historicalVersions": [
     {
