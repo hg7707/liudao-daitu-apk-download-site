@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const fsp = require('fs/promises');
 const path = require('path');
+const { Readable } = require('stream');
 const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -78,6 +79,47 @@ function downloadContentDisposition(filename) {
   return `attachment; filename="${fallback}"; filename*=UTF-8''${encodeURIComponent(filename)}`;
 }
 
+async function streamRemoteApk(req, res, config, next) {
+  const controller = new AbortController();
+  const connectTimeout = setTimeout(() => controller.abort(), 15000);
+  let upstream;
+  try {
+    const requestHeaders = {};
+    if (req.headers.range) requestHeaders.Range = req.headers.range;
+    upstream = await fetch(config.remoteApkUrl, { redirect: 'follow', headers: requestHeaders, signal: controller.signal });
+  } catch (error) {
+    console.error('Remote APK connection failed:', error.message);
+    return res.status(502).json({ success: false, error: '安装包服务器暂时不可用，请稍后重试。' });
+  } finally {
+    clearTimeout(connectTimeout);
+  }
+  if (!upstream.ok || !upstream.body) {
+    console.error('Remote APK response failed:', upstream.status);
+    return res.status(502).json({ success: false, error: '安装包服务器暂时不可用，请稍后重试。' });
+  }
+
+  const headers = {
+    'Content-Type': 'application/vnd.android.package-archive',
+    'Content-Disposition': downloadContentDisposition(config.downloadFileName),
+    'Cache-Control': 'private, no-store, max-age=0',
+    'X-Content-Type-Options': 'nosniff'
+  };
+  ['content-length', 'content-range', 'accept-ranges', 'etag', 'last-modified'].forEach((name) => {
+    const value = upstream.headers.get(name);
+    if (value) headers[name] = value;
+  });
+  res.status(upstream.status === 206 ? 206 : 200).set(headers);
+  recordDownload(config.latestVersion, req.get('user-agent')).catch((error) => console.error('Download statistic failed (download continues):', error.message));
+
+  const stream = Readable.fromWeb(upstream.body);
+  stream.on('error', (error) => {
+    console.error('Remote APK stream failed:', error.message);
+    if (!res.headersSent) next(error); else res.destroy(error);
+  });
+  res.on('close', () => stream.destroy());
+  stream.pipe(res);
+}
+
 app.get('/health', async (req, res) => {
   try {
     const config = await getConfig();
@@ -116,8 +158,7 @@ app.get('/download', downloadLimiter, async (req, res, next) => {
   try {
     const config = await getConfig();
     if (config.remoteApkUrl) {
-      recordDownload(config.latestVersion, req.get('user-agent')).catch((error) => console.error('Download statistic failed (download continues):', error.message));
-      return res.redirect(302, config.remoteApkUrl);
+      return streamRemoteApk(req, res, config, next);
     }
     const apkPath = path.resolve(apkDir, config.apkFileName);
     if (!apkPath.startsWith(`${apkDir}${path.sep}`)) return res.status(400).json({ success: false, error: '无效的下载配置。' });

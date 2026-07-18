@@ -84,7 +84,7 @@ npm test
 
 小型内测包可以作为部署产物的一部分上传（临时移除 `.gitignore` 的 APK 忽略规则，注意仓库和 Render 构建体积限制）。更建议将 APK 放在 GitHub Release、Cloudflare R2、阿里云 OSS 或腾讯云 COS，再把下载策略改为重定向或对象存储签名 URL。大文件不应长期放在 Git 仓库。
 
-当前实现默认严格按照需求从 `public/apk/` 流式读取。对于大于 GitHub 100 MB 限制的 APK，可在 GitHub Release、R2、OSS 或 COS 上传文件后，将 `remoteApkUrl` 填为该文件的 **HTTPS 直链**；`/download` 会先记录统计再直接 302 到该安装包，不会出现中间页面。若 `remoteApkUrl` 为空，站点仍会从本地 APK 流式输出。两种方式都保留 `/download` 作为唯一公开入口。
+当前实现默认严格按照需求从 `public/apk/` 流式读取。对于大于 GitHub 100 MB 限制的 APK，可在 GitHub Release、R2、OSS 或 COS 上传文件后，将 `remoteApkUrl` 填为该文件的 **HTTPS 直链**；`/download` 会由 Render 以流式代理方式输出 APK，不会把用户浏览器或 App 重定向到 GitHub。若 `remoteApkUrl` 为空，站点仍会从本地 APK 流式输出。两种方式都保留 `/download` 作为唯一公开入口。
 
 ## API
 
