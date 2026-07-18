@@ -2,7 +2,7 @@
 
 一个基于 Node.js + Express + 原生 HTML/CSS/JavaScript 的轻量 Android APP 官网。它适合部署到 Render：展示 APP 信息、版本和更新日志，并通过受控的 `/download` 接口流式下载最新 APK。
 
-> 上线前只需集中修改 `data/app-config.json`、设置 Render 环境变量，并放入正式签名 APK。不要提交 APK 到 Git 仓库。
+> 上线前只需集中修改 `data/app-config.json`、设置 Render 环境变量，并放入正式签名 APK。当前版本为消除手机端 GitHub 访问限制，将当前正式 APK 随部署包提交；单个文件必须小于 GitHub 100 MB 限制。
 
 ## 功能
 
@@ -76,7 +76,7 @@ npm test
 2. 修改 `data/app-config.json` 的 `apkFileName`，与实际文件名完全一致。例如：`app-latest.apk`。
 3. 同时更新同一文件中的 `downloadFileName`、`latestVersion`、`versionCode`、`apkSize`、`apkSha256`、`releaseDate`、`updateLog` 和 `historicalVersions`。可用 PowerShell 生成校验值：`Get-FileHash public/apk/你的文件.apk -Algorithm SHA256`。
 4. 本地执行 `npm start` 后访问 `/download` 验证浏览器下载。
-5. 提交配置和代码到 GitHub（APK 默认被 `.gitignore` 忽略）。
+5. 提交配置和代码到 GitHub。当前发布模式需要用 `git add -f public/apk/你的文件.apk` 提交正式 APK，Render 才能直接提供下载。
 
 `apkFileName` 与 `downloadFileName` 必须都是单独的 `.apk` 文件名，不能包含路径。网页、下载接口和版本检查接口都会读取这一份配置，因此不需要修改源代码。
 
@@ -84,7 +84,7 @@ npm test
 
 小型内测包可以作为部署产物的一部分上传（临时移除 `.gitignore` 的 APK 忽略规则，注意仓库和 Render 构建体积限制）。更建议将 APK 放在 GitHub Release、Cloudflare R2、阿里云 OSS 或腾讯云 COS，再把下载策略改为重定向或对象存储签名 URL。大文件不应长期放在 Git 仓库。
 
-当前实现默认严格按照需求从 `public/apk/` 流式读取。对于大于 GitHub 100 MB 限制的 APK，可在 GitHub Release、R2、OSS 或 COS 上传文件后，将 `remoteApkUrl` 填为该文件的 **HTTPS 直链**；`/download` 会由 Render 以流式代理方式输出 APK，不会把用户浏览器或 App 重定向到 GitHub。若 `remoteApkUrl` 为空，站点仍会从本地 APK 流式输出。两种方式都保留 `/download` 作为唯一公开入口。
+当前发布模式严格从 `public/apk/` 流式读取，用户浏览器和 App 始终只连接 Render 的 `/download`，不会跳转 GitHub。当前 APK 为约 53 MB，可随 Git 仓库进入 Render 部署包。若未来 APK 大于 GitHub 100 MB 限制或下载量变大，请使用 Cloudflare R2、阿里云 OSS 或腾讯云 COS，并将 `remoteApkUrl` 填为 HTTPS 直链；服务端仍可代理该文件，但应优先确认 Render 到对象存储的网络连通性。
 
 ## API
 
